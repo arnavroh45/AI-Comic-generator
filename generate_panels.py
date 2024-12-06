@@ -9,6 +9,7 @@ from io import BytesIO
 from gradio_client import Client
 from dotenv import load_dotenv
 from cloudinary_functions import upload_text_to_cloudinary, read_text_from_cloudinary
+from config import LLM_MODEL
 
 load_dotenv()
 
@@ -23,7 +24,7 @@ def generate_panels(prompt, template):
     Returns:
         list: A list of dictionaries containing panel information.
     """
-    client = Client(os.getenv("LLM_MODEL"))
+    client = Client(LLM_MODEL)
     result = client.predict(
             query = prompt,
             system=template,
